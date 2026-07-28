@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BrailleTranslate - Penerjemah Kertas Braille CNN</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;800&family=Space+Grotesk:wght@300;500;700&display=swap"
+        rel="stylesheet">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <meta name="description"
+        content="Terjemahkan paragraf kertas Braille ke teks biasa menggunakan teknologi AI Convolutional Neural Network (CNN).">
+</head>
+
+<body>
+    <div class="background-blobs"></div>
+
+    <div class="container">
+        <header>
+            <div class="logo">
+                <i class="fas fa-braille"></i>
+                <h1>Braille<span>Translate </h1>
+            </div>
+            <p class="subtitle">Teknologi visi komputer tingkat lanjut untuk literasi inklusif</p>
+        </header>
+
+        <main>
+            <div class="upload-section glass">
+                <div class="drop-zone" id="dropZone">
+                    <div class="icon-wrap">
+                        <i class="fas fa-cloud-upload-alt"></i>
+                    </div>
+                    <h3>Unggah Foto Braille</h3>
+                    <p>Seret & lepaskan gambar atau klik untuk memilih</p>
+                    <input type="file" id="fileInput" name="file" accept="image/*" hidden>
+                    <button class="btn-primary" onclick="document.getElementById('fileInput').click()">Pilih
+                        Berkas</button>
+                </div>
+
+                <div id="previewContainer" class="hidden">
+                    <h4>Pratinjau Gambar</h4>
+                    <div class="img-preview-box">
+                        <img id="imagePreview" src="#" alt="Pratinjau">
+                    </div>
+                </div>
+            </div>
+
+            <div class="action-section">
+                <button id="translateBtn" class="btn-process" disabled>
+                    <span class="btn-text">Mulai Terjemahkan</span>
+                    <span class="loader hidden"></span>
+                </button>
+            </div>
+
+            <div id="resultSection" class="result-section glass hidden">
+                <div class="result-header">
+                    <h3>Hasil Terjemahan</h3>
+                    <div class="result-badges">
+                        <span id="charCount" class="badge">0 Karakter</span>
+                        <span id="lineCount" class="badge">0 Baris</span>
+                    </div>
+                </div>
+                <div class="text-output">
+                    <textarea id="outputText" readonly placeholder="Hasil terjemahan akan muncul di sini..."></textarea>
+                    <div class="output-actions">
+                        <button id="speakBtn" class="btn-action" onclick="speakText()">
+                            <i class="fas fa-volume-up"></i> Dengarkan
+                        </button>
+                        <button class="btn-action btn-copy" onclick="copyResult()">
+                            <i class="far fa-copy"></i> Salin
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </main>
+
+        <footer>
+            <p>&copy; 2026 BrailleTranslate Project. Dikembangkan dengan Python & CNN.</p>
+        </footer>
+    </div>
+
+    <script src="{{ url_for('static', filename='js/script.js') }}"></script>
+</body>
+
+</html>
